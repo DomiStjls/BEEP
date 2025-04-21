@@ -1,3 +1,7 @@
 torch
 PIL
-flask
+fastapi
+shutil
+keras
+tensorflow
+torchvision
