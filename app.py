@@ -1,26 +1,35 @@
 import os
-from flask import Flask, request, render_template
-# from utils import predict_tumor
+from fastapi import FastAPI, File, UploadFile, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from utils import predict_tumor
+import shutil
 
-UPLOAD_FOLDER = 'static/uploads'
+app = FastAPI()
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    result = None
-    filename = None
+UPLOAD_FOLDER = "static/uploads"
 
-    if request.method == 'POST':
-        file = request.files['image']
-        if file:
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            file.save(filepath)
-            # result = predict_tumor(filepath)
-            filename = file.filename
 
-    return render_template('index.html', result=result, filename=filename)
+@app.get("/", response_class=HTMLResponse)
+async def get_form(request: Request):
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "result": None, "filename": None}
+    )
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+@app.post("/", response_class=HTMLResponse)
+async def upload_file(request: Request, file: UploadFile = File(...)):
+    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
+    with open(filepath, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    result = predict_tumor(filepath)
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "result": result, "filename": file.filename}
+    )
+
+

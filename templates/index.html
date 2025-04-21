@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Обнаружение опухоли мозга</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Tumor Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-
-
-<body style="font-family: Arial; margin: 50px;">
-    <h1>Обнаружение опухоли на МРТ</h1>
+<body>
+    <h1>🧠 Brain Tumor Detector</h1>
     <form method="post" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <input type="submit" value="Загрузить и проанализировать">
+        <input type="file" name="file" required>
+        <input type="submit" value="Upload & Analyze">
     </form>
 
     {% if filename %}
-    <h3>Загруженное изображение:</h3>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300">
-    <h2>Результат:</h2>
-    <p><strong>{{ result }}</strong></p>
+        <h3>Uploaded image:</h3>
+        <img src="{{ url_for('static', path='uploads/' + filename) }}" width="300">
+        <h2>Result:</h2>
+        <p><strong>{{ result }}</strong></p>
     {% endif %}
 </body>
-
 </html>
