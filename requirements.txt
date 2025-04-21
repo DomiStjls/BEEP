@@ -1,7 +1,6 @@
 torch
-PIL
+pillow
 fastapi
-shutil
 keras
 tensorflow
 torchvision
