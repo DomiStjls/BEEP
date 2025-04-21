@@ -20,6 +20,11 @@ async def get_form(request: Request):
         "index.html", {"request": request, "result": None, "filename": None}
     )
 
+@app.get("/about", response_class=HTMLResponse)
+async def get_form_about(request: Request):
+    return templates.TemplateResponse(
+        "about.html", {"request": request, "result": None, "filename": None}
+    )
 
 @app.post("/", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):
