@@ -24,6 +24,8 @@ async def get_form(request: Request):
 @app.post("/", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
+    if not os.path.exists("static/uploads"):
+        os.makedirs("static/uploads")
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
