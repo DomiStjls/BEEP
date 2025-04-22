@@ -2,5 +2,5 @@ torch
 pillow
 fastapi
 keras
-tensorflow
+tensorflow==2.3.0
 torchvision
