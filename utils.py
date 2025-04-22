@@ -19,11 +19,15 @@ def get_img(image_path):
     mask, orig = unit_mini(image_path)
     size = len(mask)
     pixels = orig.load()
-    print(mask.min(), mask.max())
+    minim = mask.min()
+    maxim = mask.max()
     for i in range(size):
         for j in range(size):
-            pixels[j, i] = ((255 - int(mask[i][j] * 255)) * 20, 0, 0)
-    orig.save(image_path)
+            val = (255, 0, 0)
+            m = 1 - (mask[j][i] - minim) / (maxim - minim)
+            cur = pixels[i, j]
+            pixels[i, j] = (int(cur[0] - (cur[0] - val[0]) * m), int(cur[1] - (cur[1] - val[1]) * m), int(cur[2] - (cur[2] - val[2]) * m))
+    orig.save(image_path[:-4] + '1.jpg')
 
 def predict_tumor(image_path):
     image = prepare_image_tf(image_path)

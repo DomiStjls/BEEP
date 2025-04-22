@@ -26,13 +26,13 @@ async def http_exception_handler(request, exc):
 @app.get("/", response_class=HTMLResponse)
 async def get_form(request: Request):
     return templates.TemplateResponse(
-        "index.html", {"request": request, "result": None, "filename": None}
+        "index.html", {"request": request, "result": None, "filename1": None}
     )
 
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
     return templates.TemplateResponse(
-        "about.html", {"request": request, "result": None, "filename": None}
+        "about.html", {"request": request, "result": None, "filename1": None}
         )
 
 @app.post("/", response_class=HTMLResponse)
@@ -41,8 +41,9 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     result = predict_tumor(filepath)
+    filename2 = file.filename[:-4] + '1.jpg'
     return templates.TemplateResponse(
-        "index.html", {"request": request, "result": result, "filename": file.filename}
+        "index.html", {"request": request, "result": result, "filename1": file.filename, "filename2": filename2}
     )
 
 
