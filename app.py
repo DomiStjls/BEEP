@@ -1,14 +1,14 @@
 import os
-from fastapi import FastAPI, File, UploadFile, Request, HTTPException # type: ignore
-from fastapi.responses import HTMLResponse # type: ignore
-from fastapi.staticfiles import StaticFiles # type: ignore
-from fastapi.templating import Jinja2Templates # type: ignore
-from fastapi.exceptions import RequestValidationError # type: ignore
-from fastapi.responses import PlainTextResponse # type: ignore
-from starlette.exceptions import HTTPException as StarletteHTTPException # type: ignore
+from fastapi import FastAPI, File, UploadFile, Request, HTTPException
+from fastapi.responses import HTMLResponse 
+from fastapi.staticfiles import StaticFiles 
+from fastapi.templating import Jinja2Templates 
+from fastapi.exceptions import RequestValidationError 
+from fastapi.responses import PlainTextResponse 
+from starlette.exceptions import HTTPException as StarletteHTTPException 
 from utils import predict_tumor, get_polygon
 import shutil
-from PIL import Image, ImageDraw # type: ignore
+from PIL import Image, ImageDraw 
 
 app = FastAPI()
 
