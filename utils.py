@@ -2,7 +2,7 @@
 from PIL import Image
 from keras.models import load_model  # type: ignore
 import numpy as np
-from unet_mini import unit_mini
+from unet_medium import unet_medium
 
 model = load_model("model/brain_mri_cnn_model1.h5")
 
@@ -16,11 +16,12 @@ def prepare_image_tf(image_path):
     return img_array
 
 def get_img(image_path):
-    mask, orig = unit_mini(image_path)
+    mask, orig = unet_medium(image_path)
     size = len(mask)
     pixels = orig.load()
     minim = mask.min()
     maxim = mask.max()
+    print(minim, maxim)
     for i in range(size):
         for j in range(size):
             val = (255, 0, 0)

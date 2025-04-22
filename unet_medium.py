@@ -1,14 +1,14 @@
 import torch
 from PIL import Image
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import os
 import torch
 import torch.nn as nn
 
 # ⚙️ Настройки
-MODEL_PATH = "best_model1.pth"
+MODEL_PATH = "model/best_model1.pth"
 # Замени на путь к своему изображению
 INPUT_SIZE = (128, 128)  # Размер, с которым обучалась модель
 
@@ -124,5 +124,5 @@ def unet_medium(image_path):
         output = model(input_tensor)
         mask_pred = output.squeeze().cpu().numpy()
 
-    original_img = Image.open(image_path).convert("RGB")
+    original_img = Image.open(image_path).convert("RGB").resize(INPUT_SIZE)
     return mask_pred, original_img
