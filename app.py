@@ -15,7 +15,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 UPLOAD_FOLDER = "static/uploads"
-
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)  
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request, exc):
     return templates.TemplateResponse(
