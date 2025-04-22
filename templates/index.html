@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tumor Detector</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "main.html" %}
+
+{% block content %}
+<div class="text-center">
     <h1>🧠 Brain Tumor Detector</h1>
     <form method="post" enctype="multipart/form-data">
-        <input type="file"  accept="image/*" name="file" required>
+        <input type="file" accept="image/png, image/jpg" name="file" required>
         <input type="submit" value="Upload & Analyze">
     </form>
-
     {% if filename %}
-        <h3>Uploaded image:</h3>
-        <img src="{{ url_for('static', path='uploads/' + filename) }}" width="300">
-        <h2>Result:</h2>
-        <p><strong>{{ result }}</strong></p>
+    <h3>Uploaded image:</h3>
+    <img src="{{ url_for('static', path='uploads/' + filename) }}" width="300">
+    <p>Result:</p>
+    <p><strong>{{ result }}</strong></p>
     {% endif %}
-</body>
-</html>
+</div>
+
+{% endblock content %}
