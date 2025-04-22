@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates 
 from fastapi.exceptions import RequestValidationError 
 from fastapi.responses import PlainTextResponse 
-from starlette.exceptions import HTTPException as StarletteHTTPException 
+from starlette.exceptions import HTTPException
 from utils import predict_tumor, get_polygon
 import shutil
 from PIL import Image, ImageDraw 
@@ -17,7 +17,7 @@ templates = Jinja2Templates(directory="templates")
 
 UPLOAD_FOLDER = "static/uploads"
 
-@app.exception_handler(StarletteHTTPException)
+@app.exception_handler(HTTPException)
 async def http_exception_handler(request, exc):
     return templates.TemplateResponse(
         "error.html", {"request": request, "result": None, "filename": None}
