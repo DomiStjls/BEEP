@@ -6,9 +6,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.exceptions import RequestValidationError 
 from fastapi.responses import PlainTextResponse 
 from starlette.exceptions import HTTPException
-from utils import predict_tumor, get_polygon
+from utils import predict_tumor
 import shutil
-from PIL import Image, ImageDraw 
 
 app = FastAPI()
 
@@ -41,15 +40,6 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    polygon = get_polygon(filepath)
-    img = Image.open(filepath)
-    new_polygon = []
-    width, height = img.size
-    for i in range(0, len(polygon), 2):
-        new_polygon.append((polygon[i] * width, polygon[i + 1] * height))
-    drw = ImageDraw.Draw(img, 'RGBA')
-    drw.polygon(new_polygon, outline=(255, 128, 128), fill=(255, 128, 128, 200))
-    img.save(filepath)
     result = predict_tumor(filepath)
     return templates.TemplateResponse(
         "index.html", {"request": request, "result": result, "filename": file.filename}

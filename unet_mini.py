@@ -1,14 +1,13 @@
 import torch
 from PIL import Image
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import torch.nn as nn
 import torch.nn.functional as F
 
 # ⚙️ Настройки
-MODEL_PATH = "best_model.pth"
+MODEL_PATH = "model/best_model.pth"
 INPUT_SIZE = (128, 128)  # Размер, с которым обучалась модель
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -55,6 +54,7 @@ class MiniUNet(nn.Module):
         d1 = self.up1(d2)
         d1 = self.dec1(torch.cat([d1, e1], dim=1))
         return torch.sigmoid(self.final(d1))
+
 def unit_mini(image_path):
     # 📥 Загрузка модели
     model = MiniUNet()
@@ -73,8 +73,8 @@ def unit_mini(image_path):
         output = model(input_tensor)
         mask_pred = output.squeeze().cpu().numpy()
 
-    original_img = Image.open(image_path).convert("RGB")
-    return mask_pred
+    original_img = Image.open(image_path).convert("RGB").resize((128, 128))
+    return mask_pred, original_img
 # 🖼️ Отображение результата
 # plt.figure(figsize=(10, 4))
 # plt.subplot(1, 2, 1)
