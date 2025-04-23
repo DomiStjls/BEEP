@@ -1,12 +1,21 @@
 {% extends "main.html" %}
-
+{% block title %} 
+qwerty
+{% endblock title %}
 {% block content %}
 <div class="text-center">
     <h1>Brain Tumor Detector</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" accept="image/png, image/jpeg" name="file" required>
-        <input type="submit" value="Upload & Analyze">
-    </form>
+    <div class="container">
+            <form method="post" enctype="multipart/form-data" class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <input type="file" accept="image/png, image/jpeg" name="file" required class="form-control">
+                </div>
+                <div class="col-md-auto">
+                    <input type="submit" value="Upload & Analyze" class="btn btn-danger">
+                </div>
+            </form>
+    </div>
+    </div>
     {% if filename1 %}
     <h3>Uploaded image:</h3>
     <div class="container">

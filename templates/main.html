@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEEP</title>
+    <title>{% block title %}{% endblock title %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-</head>
-<body style="">
+  </head>
+<body>
   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Simple header</span>
+      <img class="bi me-2" width="40" height="40" src="{{ url_for('static', path='/logo.png') }}" alt="Our logo">
+      <span class="fs-4">Brain Evaluation & Extraction Protocol      </span>
     </a>
 
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Главная</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Особенности</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Цены</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">О компании</a></li>
+      <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Главная</a></li>
+      <li class="nav-item"><a href="/important" class="nav-link">Особенности</a></li>
+      <li class="nav-item"><a href="/about" class="nav-link">О нас</a></li>
     </ul>
   </header>
     {% block content%}
@@ -28,9 +26,8 @@
           <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
             <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
           </a>
-          <span class="text-muted">© 2021 Company, Inc</span>
+          <span class="text-muted">© 2025 BEEP Company, Inc</span>
         </div>
-    
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
           <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
           <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
