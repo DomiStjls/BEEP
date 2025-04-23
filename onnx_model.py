@@ -31,7 +31,7 @@ class ONNXTumorSegmenter:
 
 def predict(image_path):
     image = Image.open(image_path).convert("RGB").resize(INPUT_SIZE)
-    segmenter = ONNXTumorSegmenter("model/best_model1.onnx")
+    segmenter = ONNXTumorSegmenter(MODEL_PATH)
     mask = segmenter.predict(image)
     return mask
 
