@@ -2,10 +2,11 @@
 from PIL import Image
 from keras.models import load_model  # type: ignore
 import numpy as np
-from unet_medium import unet_medium
+from onnx_model import predict
 
 model = load_model("model/brain_mri_cnn_model1.h5")
 
+INPUT_SIZE = (128, 128)
 
 def prepare_image_tf(image_path):
     img = Image.open(image_path).convert("L")  # 'L' for grayscale
@@ -16,8 +17,9 @@ def prepare_image_tf(image_path):
     return img_array
 
 def get_img(image_path):
-    mask, orig = unet_medium(image_path)
+    mask = predict(image_path)
     size = len(mask)
+    orig = Image.open(image_path).convert("RGB").resize(INPUT_SIZE)
     pixels = orig.load()
     minim = mask.min()
     maxim = mask.max()
@@ -34,7 +36,7 @@ def predict_tumor(image_path):
     image = prepare_image_tf(image_path)
     prediction = model.predict(image)[0][0]
     if prediction <= 0.5:
-        return "No tumor detected ✅"
+        return "Низкая вероятность наличия опухоли ✅"
     get_img(image_path)
-    return "Tumor detected 🚨"
+    return "Высокая вероятность наличия опухоли 🚨"
 

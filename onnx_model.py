@@ -36,4 +36,4 @@ def predict(image_path):
     return mask
 
 
-print(predict("static/bobritobandito.png"))
+# print(predict("static/bobritobandito.png"))
