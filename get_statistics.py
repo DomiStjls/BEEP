@@ -1,15 +1,18 @@
-from onnx_model import predict
-
+from onnx_model2 import predict, value
 from PIL import Image
 
-inputsize = 128
+PATH = "train"
+
+
+inputsize = value
 sumiou = 0
-cnt = 2765
+cnt = 122
+fail = 0
 for i in range(cnt):
     try:
-        path1 = f"brain/train/images/{i}.jpg"
+        path1 = f"brain/{PATH}/images/{i}.jpg"
         mask = predict(path1)
-        path2 = f"brain/train/masks/{i}.png"
+        path2 = f"brain/{PATH}/masks/{i}.png"
         img2 = Image.open(path2).resize((inputsize, inputsize))
         img2 = img2.load()
         val = 0
@@ -20,7 +23,7 @@ for i in range(cnt):
         for x in range(inputsize):
             for y in range(inputsize):
                 m = 1 - (mask[y][x] - minim) / (maxim - minim)
-                y_pred.append((m > 0.2))
+                y_pred.append((m > 0.5))
                 y_true.append((img2[x, y][1] < 200))
         # print(y_true)
         # print(y_pred)
@@ -32,8 +35,9 @@ for i in range(cnt):
         else:
             iou = inter / union
             sumiou += iou
-        print(inter, union, iou)
-    except:
-        cnt -= 1
-        print("error")
-print(sumiou / cnt)
+        print(i, inter, union, iou, sumiou / (i + 1 - fail))
+    except Exception as e:
+        fail += 1
+        if 'Keyboard' in str(e):
+            break
+        print(e)
