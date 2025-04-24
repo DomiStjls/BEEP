@@ -2,3 +2,4 @@ onnxruntime
 pillow
 fastapi
 keras
+uvicorn

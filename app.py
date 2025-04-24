@@ -35,6 +35,11 @@ async def about(request: Request):
     return templates.TemplateResponse(
         "about.html", {"request": request, "result": None, "filename1": None}
         )
+@app.get("/help", response_class=HTMLResponse)
+async def help(request: Request):
+    return templates.TemplateResponse(
+        "help.html", {"request": request, "result": None, "filename1": None}
+        )
 
 @app.post("/", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):

@@ -4,7 +4,7 @@ BEEP
 {% endblock title %}
 {% block content %}
 <div class="text-center">
-    <h1>Brain Tumor Detector</h1>
+    <h1>Получите результат, загрузив файл</h1>
     <div class="container">
             <form method="post" enctype="multipart/form-data" class="row justify-content-md-center">
                 <div class="col-md-auto">
@@ -15,20 +15,19 @@ BEEP
                 </div>
             </form>
     </div>
-    </div>
     {% if filename1 %}
-    <h3>Uploaded image:</h3>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <img src="{{ url_for('static', path='uploads/' + filename1) }}" width="300" alt="52">
-            </div>
-            <div class="col">
-                <img src="{{ url_for('static', path='uploads/' + filename2) }}" width="300" alt="69">
-            </div>
+    <h3>Результат:</h3>
+    <div class="container text-center justify-content-md-center">
+        <div class="row justify-content-md-center">
+            <!-- <div class="col"> -->
+                <img src="{{ url_for('static', path='uploads/' + filename1) }}" alt="52" class="col">
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+                <img src="{{ url_for('static', path='uploads/' + filename2) }}" alt="69" class="col">
+            <!-- </div> -->
         </div>
     </div>
-    <p>Result:</p>
+    <p>Вердикт:</p>
     <p><strong>{{ result }}</strong></p>
     <a href="{{ url_for('static', path='uploads/' + filename2) }}" download class="btn btn-danger">Скачать результат</a>
     {% endif %}
