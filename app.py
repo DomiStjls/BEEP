@@ -33,7 +33,11 @@ async def about(request: Request):
     return templates.TemplateResponse(
         "about.html", {"request": request, "result": None, "filename1": None}
         )
-
+@app.get("/mem", response_class=HTMLResponse)
+async def mem(request: Request):
+    return templates.TemplateResponse(
+        "mem.html", {"request": request, "result": None, "filename1": None}
+        )
 @app.get("/help", response_class=HTMLResponse)
 async def help(request: Request):
     return templates.TemplateResponse(
