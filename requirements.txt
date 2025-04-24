@@ -2,5 +2,3 @@ onnxruntime
 pillow
 fastapi
 keras
-tensorflow==2.3.0
-torchvision
