@@ -53,7 +53,7 @@ for i in range(cnt):
         sumf1 += f1score
         n = i + 1 - fail
         print(f"{i}: {f1score:.5f} {iou:.5f}")
-        # print(f"f1 = {(sumf1 / n):.5f}, iou = {(sumiou / n):.5f}, map50 = {(summap50 / cntmap50):.5f}")
+        # print(f"f1={(sumf1 / n):.5f},iou={(sumiou / n):.5f},map50={(summap50 / cntmap50):.5f}")
     except Exception as e:
         fail += 1
         if 'Keyboard' in str(e):

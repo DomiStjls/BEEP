@@ -2,7 +2,7 @@ import onnxruntime as ort
 import numpy as np
 from PIL import Image
 
-MODEL_PATH = f"model/best_model4.onnx"
+MODEL_PATH = f"model/best_model8.onnx"
 size = 128
 canal = 1
 
