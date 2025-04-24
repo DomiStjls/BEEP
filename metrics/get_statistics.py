@@ -2,7 +2,7 @@ from onnx_model_copy import predict, size
 from PIL import Image
 
 PATH = "test"
-cnt = 122
+cnt = 100
 
 
 inputsize = size

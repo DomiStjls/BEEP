@@ -42,11 +42,11 @@ async def help(request: Request):
         "help.html", {"request": request, "result": None, "filename1": None}
         )
 
-@app.get("/info", response_class=HTMLResponse)
-async def info(request: Request):
-    return templates.TemplateResponse(
-        "animation.html", {"request": request, "result": None, "filename1": None}
-        )
+# @app.get("/info", response_class=HTMLResponse)
+# async def info(request: Request):
+#     return templates.TemplateResponse(
+#         "animation.html", {"request": request, "result": None, "filename1": None}
+#         )
 
 @app.post("/", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):
