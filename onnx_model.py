@@ -2,7 +2,7 @@ import onnxruntime as ort
 import numpy as np
 from PIL import Image
 
-MODEL_PATH = "model/best_model2.pth"
+MODEL_PATH = "model/best_model3.onnx"
 
 INPUT_SIZE = (128, 128)
 
@@ -16,7 +16,7 @@ class ONNXTumorSegmenter:
         """Преобразование PIL Image в тензор ONNX (1, 3, H, W)"""
         image = image.convert("L").resize((self.img_size, self.img_size))
         np_img = np.array(image).astype(np.float32) / 255.0
-        np_img = np.stack([np_img] * 3, axis=0)  # (3, H, W)
+        np_img = np.stack([np_img], axis=0)  # (3, H, W)
         np_img = np.expand_dims(np_img, axis=0)  # (1, 3, H, W)
         return np_img
 
