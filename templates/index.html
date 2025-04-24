@@ -17,13 +17,13 @@ BEEP
     </div>
     {% if filename1 %}
     <h3>Результат:</h3>
-    <div class="container text-center justify-content-md-center">
+    <div class="container text-center justify-content-md-center" style="width:50vw;">
         <div class="row justify-content-md-center">
             <!-- <div class="col"> -->
-                <img src="{{ url_for('static', path='uploads/' + filename1) }}" alt="52" class="col">
+                <img src="{{ url_for('static', path='uploads/' + filename1) }}" alt="52" class="col" style="width:250px;">
             <!-- </div> -->
             <!-- <div class="col"> -->
-                <img src="{{ url_for('static', path='uploads/' + filename2) }}" alt="69" class="col">
+                <img src="{{ url_for('static', path='uploads/' + filename2) }}" alt="69" class="col" style="width: 250px;">
             <!-- </div> -->
         </div>
     </div>

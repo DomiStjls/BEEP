@@ -1,12 +1,12 @@
 from onnx_model2 import predict, value
 from PIL import Image
 
-PATH = "train"
+PATH = "test"
+cnt = 122
 
 
 inputsize = value
 sumiou = 0
-cnt = 122
 fail = 0
 for i in range(cnt):
     try:

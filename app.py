@@ -35,10 +35,17 @@ async def about(request: Request):
     return templates.TemplateResponse(
         "about.html", {"request": request, "result": None, "filename1": None}
         )
+
 @app.get("/help", response_class=HTMLResponse)
 async def help(request: Request):
     return templates.TemplateResponse(
         "help.html", {"request": request, "result": None, "filename1": None}
+        )
+
+@app.get("/info", response_class=HTMLResponse)
+async def info(request: Request):
+    return templates.TemplateResponse(
+        "animation.html", {"request": request, "result": None, "filename1": None}
         )
 
 @app.post("/", response_class=HTMLResponse)
