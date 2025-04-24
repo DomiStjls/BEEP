@@ -50,6 +50,8 @@ async def info(request: Request):
 
 @app.post("/", response_class=HTMLResponse)
 async def upload_file(request: Request, file: UploadFile = File(...)):
+    shutil.rmtree(UPLOAD_FOLDER)
+    os.makedirs(UPLOAD_FOLDER)
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
