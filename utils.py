@@ -35,8 +35,8 @@ def get_img(image_path):
 def predict_tumor(image_path):
     image = prepare_image_tf(image_path)
     prediction = model.predict(image)[0][0]
+    get_img(image_path)
     if prediction <= 0.5:
         return "Низкая вероятность наличия опухоли ✅"
-    get_img(image_path)
     return "Высокая вероятность наличия опухоли 🚨"
 

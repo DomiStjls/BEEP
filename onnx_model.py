@@ -2,7 +2,7 @@ import onnxruntime as ort
 import numpy as np
 from PIL import Image
 
-MODEL_PATH = "model/best_model3.onnx"
+MODEL_PATH = "model/best_model6.onnx"
 
 INPUT_SIZE = (128, 128)
 

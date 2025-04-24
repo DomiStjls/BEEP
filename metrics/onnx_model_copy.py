@@ -2,17 +2,14 @@ import onnxruntime as ort
 import numpy as np
 from PIL import Image
 
-MODEL_PATH = "model/best_model3.onnx"
-value = 128
+MODEL_PATH = f"model/best_model6.onnx"
+size = 128
 canal = 1
 
-
-
-INPUT_SIZE = (value, value)
-
+INPUT_SIZE = (size, size)
 
 class ONNXTumorSegmenter:
-    def __init__(self, model_path: str, img_size: int = value):
+    def __init__(self, model_path: str, img_size: int = size):
         self.session = ort.InferenceSession(model_path)
         self.input_name = self.session.get_inputs()[0].name
         self.img_size = img_size

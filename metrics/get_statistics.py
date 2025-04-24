@@ -1,11 +1,11 @@
-from onnx_model2 import predict, value
+from onnx_model_copy import predict, size
 from PIL import Image
 
 PATH = "test"
 cnt = 122
 
 
-inputsize = value
+inputsize = size
 sumiou = 0
 fail = 0
 for i in range(cnt):
