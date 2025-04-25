@@ -56,6 +56,6 @@ uvicorn app:app --reload
 
 |F1 score	| IOU	| mAP50 |
 |------|------- | ------|
-
+| 0.88 | 0.81 | 0.86 |
 
 
